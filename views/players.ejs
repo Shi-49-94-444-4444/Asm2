@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <title>Document</title>
+    <style>
+        html {
+            background-color: rgb(251, 245, 246);
+        }
+
+        table {
+            width: 100%;
+            box-shadow: 1px 2px 7px 9px #888888;
+        }
+
+        tr {
+            background-color: rgb(235, 237, 237);
+        }
+
+        .form-fix {
+            margin-right: 10%;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar menu_style" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" style=" text-decoration: none;" href="/players">
+                <span style="font-weight: 900;font-family: Verdana, Geneva, Tahoma, sans-serif;">⚽Football
+                    Management⚽</span>
+            </a>
+
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item " style="text-decoration: none;" href="/players ">Home</a>
+                <a class="navbar-item " style="text-decoration: none;" href="/nations ">Nations</a>
+            </div>
+            <div class="navbar-end ">
+            </div>
+        </div>
+    </nav>
+
+    <form method="post" class="form-fix">
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">Name</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-info" name="name" type="text" placeholder="e.g. Messi">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">Club</label>
+            </div>
+            <div class="field-body">
+                <div class="field is-narrow">
+                    <div class="control">
+                        <div class="select is-fullwidth">
+                            <select name="club">
+                                <%for (let club of clubList){ %>
+                                <option value="<%= club.name %>"><%= club.name %></option>
+                                <% } %>
+                            </select>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">Position</label>
+            </div>
+            <div class="field-body">
+                <div class="field is-narrow">
+                    <div class="control">
+                        <div class="select is-fullwidth">
+                            <select name="position">
+                                <% positions.forEach(position => { %>
+                                <option value="<%= position.name %>"><%= position.name %></option>
+                                <% }) %>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">Goals</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-info" name="goals" type="number" placeholder="e.g. 100" required>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">Captain</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <div class="control">
+                        <input type="radio" name="isCaptain" id="true" value="true">Yes
+                        <input type="radio" name="isCaptain" checked id="false" value="false">No</div>
+                </div>
+            </div>
+        </div>
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">Image</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-info" name="image" type="text" placeholder="URL of image">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="field is-horizontal">
+            <div class="field-body">
+                <div class="field">
+                    <div class="control">
+                        <button class="button is-primary" type="submit">
+                            Create
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <table class="table">
+        <thead>
+            <tr>
+                <th style="width: 20%;">Image</th>
+                <th style="width: 20%;">Name</th>
+                <th style="width: 10%;">Club</th>
+                <th style="width: 10%;">Position</th>
+                <th style="width: 10%;">Goals</th>
+                <th style="width: 10%;">IsCaptain</th>
+                <th style="width: 20%;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% players.forEach(function(player){ %>
+            <tr style="height: 120px;">
+                <td style="width: 20%;">
+                    <figure class="image is-64x64">
+                        <img src=<%= player.image %>>
+                    </figure>
+                </td>
+                <td style="width: 20%;"> <%= player.name %> </td>
+                <td style="width: 10%;"> <%= player.club %> </td>
+                <td style="width: 10%;"> <%= player.position %> </td>
+                <td style="width: 10%;"> <%= player.goals %> </td>
+                <td style="width: 10%;"> <%= player.isCaptain %> </td>
+                <td style="width: 20%;">
+                    <div class="buttons are-small">
+                        <a href="/edit/<%= player._id %>" class="button is-warning is-light">Edit</a>
+                        <a href="/delete/<%= player._id %>" class="button is-danger is-light">Delete</a>
+
+                    </div></a>
+                </td>
+            </tr>
+            <% })%>
+        </tbody>
+    </table>
+
+</body>
+
+</html>

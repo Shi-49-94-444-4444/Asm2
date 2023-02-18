@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <title>Document</title>
     <style>
-        html{
+        html {
             background-color: rgb(251, 245, 246);
         }
 
@@ -17,7 +17,7 @@
             box-shadow: 1px 2px 7px 9px #888888;
         }
 
-        tr{
+        tr {
             background-color: rgb(235, 237, 237);
         }
 
@@ -30,11 +30,6 @@
             margin-left: 50%;
             margin-bottom: 40px;
         }
-
-        button {
-            padding: 14px 40px;
-        }
-        
     </style>
 </head>
 
@@ -42,10 +37,12 @@
     <nav class="navbar menu_style" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
             <a class="navbar-item" style=" text-decoration: none;" href="/players">
-                <span style="font-weight: 900;font-family: Verdana, Geneva, Tahoma, sans-serif;">Football Management    </span>
+                <span style="font-weight: 900;font-family: Verdana, Geneva, Tahoma, sans-serif;">Football
+                    Management</span>
             </a>
 
-            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                data-target="navbarBasicExample">
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
@@ -70,8 +67,11 @@
             <div class="field-body">
                 <div class="field">
                     <div class="control">
-                        <input class="input is-info" name="name" type="text" placeholder="e.g. Messi">
+                        <input class="input is-info" name="name" type="text" value="<%= nation.name %>">
                     </div>
+                    <p class="help is-danger">
+                        This field is required
+                    </p>
                 </div>
             </div>
         </div>
@@ -83,48 +83,30 @@
             <div class="field-body">
                 <div class="field">
                     <div class="control">
-                        <input class="input is-info" name="description" type="text" placeholder="Des" required>
+                        <input class="input is-info" name="description" type="text" value="<%= nation.description %>" required>
                     </div>
+                    <p class="help is-danger">
+                        This field is required
+                    </p>
                 </div>
             </div>
         </div>
+
         <div class="field is-horizontal" id="button-cus">
             <div class="field-body">
                 <div class="field">
                     <div class="control">
-                        <button class="button is-primary" type="submit" style="padding: 14px 40px;">
-                            Create
+                        <button class="button is-primary button-lagre" type="submit" style="padding: 14px 40px; margin-bottom: 10px;">
+                            Save
                         </button>
+                    </div>
+                    <div class="control ">
+                        <a href="/Nations"><button class="button is-link is-light " type="submit" style="padding: 14px 33px;">Cancel</button></a>
                     </div>
                 </div>
             </div>
         </div>
     </form>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% nations.forEach(function(nation){ %>
-            <tr>
-                <td style="width: 30%;"> <%= nation.name %> </td>
-                <td style="width: 50%;"> <%= nation.description %> </td>
-                <td style="width: 20%;">
-                    <div class="buttons are-small">
-                        <a href="nations/edit/<%= nation.id %>" class="button is-warning is-light">Edit</a>
-                        <a href="nations/delete/<%= nation.id %>" class="button is-danger is-light">Delete</a>
-
-                    </div></a>
-                </td>
-            </tr>
-            <% })%>
-        </tbody>
-    </table>
 
 </body>
 

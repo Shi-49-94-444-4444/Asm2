@@ -7,10 +7,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <title>Document</title>
+    <style>
+        html {
+            background-color: rgb(251, 245, 246);
+        }
+
+        table {
+            width: 100%;
+            box-shadow: 1px 2px 7px 9px #888888;
+        }
+
+        tr {
+            background-color: rgb(235, 237, 237);
+        }
+
+        .form-fix {
+            margin-right: 10%;
+            margin-top: 40px;
+        }
+
+        #button-cus{
+            margin-left: 50%;
+            margin-bottom: 40px;
+        }
+
+        button {
+            padding: 14px 40px;
+        }
+    </style>
 </head>
 
 <body>
-    <form method="post">
+    <nav class="navbar menu_style" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" style=" text-decoration: none;" href="/players">
+                <span style="font-weight: 900;font-family: Verdana, Geneva, Tahoma, sans-serif;">Football
+                    Management</span>
+            </a>
+
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item " style="text-decoration: none;" href="/players ">Home</a>
+                <a class="navbar-item " style="text-decoration: none;" href="/nations ">Nations</a>
+            </div>
+            <div class="navbar-end ">
+            </div>
+        </div>
+    </nav>
+    <form method="post" class="form-fix">
         <div class="field is-horizontal">
             <div class="field-label is-normal">
                 <label class="label">Name</label>
@@ -35,13 +87,72 @@
                     <div class="control">
                         <div class="select is-fullwidth">
                             <select name="club">
-                                <%for (let club of clubList){ %>
+                                <% clubList.forEach(club => { %>
                                 <option value="<%= club.name %>"
-                                    <%= JSON.stringify(club.name) === JSON.stringify(player.club) ? 'selected' : ''  %>>
-                                    <%= club.name %> </option>
-                                <% } %>
+                                    <%= JSON.stringify(club.name) === JSON.stringify(player.club) ? 'selected' : '' %>>
+                                    <%= club.name %></option> <% }) %>
+                            </select> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">Position</label>
+            </div>
+            <div class="field-body">
+                <div class="field is-narrow">
+                    <div class="control">
+                        <div class="select is-fullwidth">
+                            <select name="position">
+                                <% positions.forEach(position => { %>
+                                <option value="<%= position.name %>"
+                                    <%= JSON.stringify(position.name) === JSON.stringify(player.position) ? 'selected' : '' %>>
+                                    <%=position.name %></option> <% }) %>
                             </select>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">Goals</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-info" name="goals" type="number" value="<%= player.goals %>">
+                    </div>
+                    <p class="help is-danger">
+                        This field is required
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">Captain</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <div class="control">
+                        <% if ( player.isCaptain ===true) { %>
+                        <label class="radio">
+                            <input type="radio" name="isCaptain" id="true" value="true" checked> True
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="isCaptain" id="false" value="false"> False
+                        </label>
+                        <% } else { %>
+                        <label class="radio">
+                            <input type="radio" name="isCaptain" id="true" value="true" checked=""> True
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="isCaptain" id="false" value="false" checked> False
+                        </label>
+                        <% } %>
+
                     </div>
                 </div>
             </div>
@@ -62,13 +173,16 @@
                 </div>
             </div>
         </div>
-        <div class="field is-horizontal">
+        <div class="field is-horizontal" id="button-cus">
             <div class="field-body">
                 <div class="field">
                     <div class="control">
-                        <button class="button is-primary" type="submit">
+                        <button class="button is-primary" type="submit" style="padding: 14px 40px; margin-bottom: 10px;">
                             Save
                         </button>
+                    </div>
+                    <div class="control ">
+                        <a href="/players"><button class="button is-link is-light " type="submit" style="padding: 14px 33px;">Cancel</button></a>
                     </div>
                 </div>
             </div>

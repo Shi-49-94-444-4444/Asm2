@@ -23,6 +23,16 @@
 
         .form-fix {
             margin-right: 10%;
+            margin-top: 40px;
+        }
+
+        #button-cus{
+            margin-left: 50%;
+            margin-bottom: 40px;
+        }
+
+        button {
+            padding: 14px 40px;
         }
     </style>
 </head>
@@ -31,8 +41,8 @@
     <nav class="navbar menu_style" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
             <a class="navbar-item" style=" text-decoration: none;" href="/players">
-                <span style="font-weight: 900;font-family: Verdana, Geneva, Tahoma, sans-serif;">⚽Football
-                    Management⚽</span>
+                <span style="font-weight: 900;font-family: Verdana, Geneva, Tahoma, sans-serif;">Football
+                    Management</span>
             </a>
 
             <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
@@ -140,11 +150,11 @@
                 </div>
             </div>
         </div>
-        <div class="field is-horizontal">
+        <div class="field is-horizontal" id="button-cus">
             <div class="field-body">
                 <div class="field">
                     <div class="control">
-                        <button class="button is-primary" type="submit">
+                        <button class="button is-primary" type="submit" style="padding: 14px 40px;">
                             Create
                         </button>
                     </div>
@@ -178,10 +188,11 @@
                 <td style="width: 10%;"> <%= player.goals %> </td>
                 <td style="width: 10%;"> <%= player.isCaptain %> </td>
                 <td style="width: 20%;">
-                    <div class="buttons are-small">
-                        <a href="/edit/<%= player._id %>" class="button is-warning is-light">Edit</a>
-                        <a href="/delete/<%= player._id %>" class="button is-danger is-light">Delete</a>
-
+                    <div class="buttons are-small" class="button is-warning is-light">
+                        <a href="players/edit/<%= player._id %>">
+                            <button type="submit" class="button is-danger is-light">Edit</button></a>
+                        <a href="players/delete/<%= player._id %>"><button type="submit"
+                                class="button is-warning is-light">Delete</button></a>
                     </div></a>
                 </td>
             </tr>

@@ -25,7 +25,6 @@ class NationController {
         res.render("editNation", {
           title: "The detail of Nation",
           nation: nation,
-          clubList: clubData,
         });
       })
       .catch(next);

@@ -1,6 +1,6 @@
 const Players = require("../models/player");
 
-let clubData = [
+const clubData = [
   { id: "1", name: "Arsenal" },
   { id: "2", name: "Manchester United" },
   { id: "3", name: "Chelsea" },
@@ -69,7 +69,9 @@ class PlayerController {
   delete(req, res, next) {
     const playerId = req.params.playerId;
     Players.findByIdAndDelete(playerId)
-      .then(() => res.redirect("/players"))
+      .then(() => {
+        res.redirect("/players");
+      })
       .catch(next);
   }
 }

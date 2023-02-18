@@ -8,9 +8,9 @@ playersRouter
   .get(playerController.index)
   .post(playerController.create);
 playersRouter
-  .route("/edit/:id")
+  .route("/edit/:playerId")
   .get(playerController.formEdit)
   .post(playerController.edit);
-playersRouter.route("/delete/:id").get(playerController.delete);
+playersRouter.route("/delete/:playerId").get(playerController.delete);
 
 module.exports = playersRouter;

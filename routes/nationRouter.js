@@ -8,9 +8,9 @@ nationsRouter
   .get(nationController.index)
   .post(nationController.create);
 nationsRouter
-  .route("/edit/:id")
+  .route("/edit/:nationId")
   .get(nationController.formEdit)
   .post(nationController.edit);
-nationsRouter.route("/delete/:id").get(nationController.delete);
+nationsRouter.route("/delete/:nationId").get(nationController.delete);
 
 module.exports = nationsRouter;
